@@ -114,11 +114,19 @@ class User {
 
   // authenticate user
     public function authenticate($username, $password) {
-        /*
-         * if username and password good then
-         * $this->auth = true;
-         */
 		$username = strtolower($username);
+
+      // check if user is locked out before attempting to auth
+      $lockoutStatus = $this->isUserLockedOut($username);
+      if ($lockoutStatus['locked']) {
+      $timeRemaining = $this->getLockoutTimeRemaining($username);
+      $_SESSION['lockout_error'] = "Account locked for " . $timeRemaining . " seconds";
+      $_SESSION['lockout_time'] = $timeRemaining;
+      header('Location: /login');
+      die;
+    }
+
+    // normal auth logic
 		$db = db_connect();
         $statement = $db->prepare("select * from users WHERE username = :name;");
         $statement->bindValue(':name', $username);
@@ -126,12 +134,35 @@ class User {
         $rows = $statement->fetch(PDO::FETCH_ASSOC);
 		
 		if (password_verify($password, $rows['password'])) {
+
+      // log successful login attempt
+      $this->logLoginAttempt($username, 'good');
+
 			$_SESSION['auth'] = 1;
 			$_SESSION['username'] = ucwords($username);
 			unset($_SESSION['failedAuth']);
 			header('Location: /home');
 			die;
 		} else {
+
+      // log failed login attempt
+      $this->logLoginAttempt($username, 'bad');
+
+      //check if failed attempt puts into lockout
+      $newLockoutStatus = $this->isUserLockedOut($username);
+      if ($newLockoutStatus['locked']) {
+          $timeRemaining = $this->getLockoutTimeRemaining($username);
+          $_SESSION['lockout_error'] = "Account locked for " . $timeRemaining . " seconds";
+          $_SESSION['lockout_time'] = $timeRemaining;
+      } else {
+        // count attepts remaining
+        $failedCount = $newLockoutStatus['failed_count'];
+        $attemptsRemaining = 3 - $failedCount;
+        if ($attemptsRemaining > 0) {
+          $_SESSION['login_error'] = "Invalid username or password. " . $attemptsRemaining . " attempts remaining.";
+        }
+      }
+      
 			if(isset($_SESSION['failedAuth'])) {
 				$_SESSION['failedAuth'] ++; //increment
 			} else {
