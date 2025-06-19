@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sign In - Whatever this will be</title>
+		<link rel="stylesheet" href="/styles/login.css">
+</head>
 <?php require_once 'app/views/templates/headerPublic.php'?>
 <main role="main" class="container">
     <div class="page-header" id="banner">
