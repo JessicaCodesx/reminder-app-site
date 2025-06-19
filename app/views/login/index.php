@@ -25,5 +25,10 @@
 		</fieldset>
 		</form> 
 	</div>
+	<div class="row mt-3">
+			<div class="col-lg-12">
+					<p>Not signed up? <a href="/create">Sign up here</a></p>
+			</div>
+	</div>
 </div>
     <?php require_once 'app/views/templates/footer.php' ?>
