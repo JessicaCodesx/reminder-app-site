@@ -8,20 +8,37 @@
         </div>
     </div>
 
+	<?php if (isset($_SESSION['lockout_error'])): ?>
+		<div class="alert alert-danger">
+				<strong>Account Locked!</strong> <?= htmlspecialchars($_SESSION['lockout_error']) ?>
+		</div>
+		<?php unset($_SESSION['lockout_error']); ?>
+	<?php elseif (isset($_SESSION['login_error'])): ?>
+		<div class="alert alert-warning">
+				<?= htmlspecialchars($_SESSION['login_error']) ?>
+		</div>
+		<?php unset($_SESSION['login_error']); ?>
+	<?php endif; ?>
+
 <div class="row">
     <div class="col-sm-auto">
 		<form action="/login/verify" method="post" >
 		<fieldset>
 			<div class="form-group">
 				<label for="username">Username</label>
-				<input required type="text" class="form-control" name="username">
+				<input required type="text" class="form-control" name="username"
+					<?= isset($_SESSION['lockout_time']) ? 'disabled' : '' ?>>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input required type="password" class="form-control" name="password">
+				<input required type="password" class="form-control" name="password"
+	        <?= isset($_SESSION['lockout_time']) ? 'disabled' : '' ?>>
 			</div>
             <br>
-		    <button type="submit" class="btn btn-primary">Login</button>
+		    <button type="submit" class="btn btn-primary"
+					<?= isset($_SESSION['lockout_time']) ? 'disabled' : '' ?>>
+					Login
+				</button>	
 		</fieldset>
 		</form> 
 	</div>
