@@ -48,4 +48,31 @@
 			</div>
 	</div>
 </div>
+	
+	<?php if (isset($_SESSION['lockout_time'])): ?>
+	   <!-- lets make a countdown timer for the locklout -->
+		<script>
+			// countdown timer for lockout
+			let timeRemaining = <?= (int)$_SESSION['lockout_time']?>;
+
+	  function updateCountdown() {
+			if (timeRemaining > 0) {
+				// update alert msg with remiaing time
+				document.querySelector('.alert-danger').innerHTML = `<strong>Account Locked!</strong> Please wait ${timeRemaining} seconds before trying again :(.`;
+				timeRemaining--; // dec time remaining
+				setTimeout(updateCountdown, 1000); // call again after 1 second
+			} else {
+				// time expired: reload page to re enable the form and remove lockout msg
+				location.reload();
+			}
+		}
+			// if theres time left still start the countdown
+				if (timeRemaining > 0) {
+					updateCountdown();
+				}
+		</script>
+		<?php unset($_SESSION['lockout_time']); ?>
+		<?php endif; ?>
+				
     <?php require_once 'app/views/templates/footer.php' ?>
+
