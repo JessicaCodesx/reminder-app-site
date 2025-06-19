@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 class User {
 
     public $username;
@@ -101,4 +100,22 @@ class User {
         return false;
     }
   }
+
+  // log in attempt logging to log table in db
+  public function logLoginAttempt($username, $result) {
+      try {
+              $db = db_connect();
+              $statement = $db->prepare("INSERT INTO login_attempts (username, attempt_result, ip_address, user_agent) VALUES (:username, :result, :ip, :user_agent)");
+
+              $statement->bindValue(':username', strtolower($username));
+              $statement->bindValue(':result', $result);
+              $statement->bindValue(':ip', $_SERVER['REMOTE_ADDR'] ?? 'unknown');
+              $statement->bindValue(':user_agent', $_SERVER['HTTP_USER_AGENT'] ?? 'unknown');
+
+              $statement->execute();
+          } catch (PDOException $e) {
+              // log the error but dont break login process
+              error_log("Failed to log login attempt: " . $e->getMessage());
+          }
+      }
 }
