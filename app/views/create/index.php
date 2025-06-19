@@ -3,7 +3,7 @@
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-12">
-                <h1>You are not logged in</h1>
+                <h1>Sign Up Now</h1>
             </div>
         </div>
     </div>
@@ -46,12 +46,11 @@
     </fieldset>
     </form> 
   </div>
-</div>
-
     <div class="row mt-3">
-        <div class="col-lg-12">
-            <p>Don't have an account? <a href="/create">Create one here</a></p>
-        </div>
+            <div class="col-lg-12">
+                    <p>Already signed up? <a href="/login">Log in here</a></p>
+            </div>
     </div>
+</div>
 
     <?php require_once 'app/views/templates/footer.php' ?>
