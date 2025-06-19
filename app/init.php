@@ -6,6 +6,7 @@ ini_set('session.gc_probability', 1);
 ini_set('session.gc_divisor', 1);
 $sessionCookieExpireTime = 28800; // 8hrs
 session_set_cookie_params($sessionCookieExpireTime);
+
 session_start();
 
 require_once 'core/App.php';
