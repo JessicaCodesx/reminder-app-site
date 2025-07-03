@@ -98,4 +98,19 @@ class Reminder {
             return false;
         }
     }
+
+    // toggle completion status
+    public function toggleComplete($id, $username) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("UPDATE reminders SET completed = NOT completed WHERE id = :id AND username = :username");
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':username', strtolower($username));
+
+            return $statement->execute();
+        } catch (PDOException $e) {
+            error_log("Failed to toggle reminder: " . $e->getMessage());
+            return false;
+        }
+    }
 }
