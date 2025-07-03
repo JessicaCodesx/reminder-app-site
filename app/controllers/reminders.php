@@ -35,14 +35,22 @@ class Reminders extends Controller {
         $this->view('reminders/create');
     }
 
-    // creation of new reminder
+    // Replace your store() method in reminders.php with this debug version
     public function store() {
         $user_id = $this->checkAuth();
+
+        // Debug: Check if user_id is valid
+        error_log("DEBUG: user_id = " . var_export($user_id, true));
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = trim($_POST['title'] ?? '');
             $description = trim($_POST['description'] ?? '');
             $due_date = $_POST['due_date'] ?? null;
+
+            // Debug: Log the input values
+            error_log("DEBUG: title = " . var_export($title, true));
+            error_log("DEBUG: description = " . var_export($description, true));
+            error_log("DEBUG: due_date = " . var_export($due_date, true));
 
             // Basic validation
             if (empty($title)) {
@@ -56,13 +64,30 @@ class Reminders extends Controller {
                 $due_date = null;
             }
 
+            // Debug: Check if we can create the model
             $reminder = $this->model('Reminder');
-            if ($reminder->createReminder($user_id, $title, $description, $due_date)) {
+            error_log("DEBUG: Reminder model created: " . var_export($reminder, true));
+
+            // Debug: Try the database connection
+            $db = db_connect();
+            if (!$db) {
+                error_log("DEBUG: Database connection failed!");
+                $_SESSION['reminder_error'] = 'Database connection failed';
+                header('Location: /reminders/create');
+                die;
+            } else {
+                error_log("DEBUG: Database connection successful");
+            }
+
+            $result = $reminder->createReminder($user_id, $title, $description, $due_date);
+            error_log("DEBUG: createReminder result = " . var_export($result, true));
+
+            if ($result) {
                 $_SESSION['reminder_success'] = 'Reminder created successfully!';
                 header('Location: /reminders');
                 die;
             } else {
-                $_SESSION['reminder_error'] = 'Failed to create reminder';
+                $_SESSION['reminder_error'] = 'Failed to create reminder - check error logs';
                 header('Location: /reminders/create');
                 die;
             }

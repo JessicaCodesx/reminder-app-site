@@ -7,7 +7,7 @@ class User {
     public $auth = false;
 
     public function __construct() {
-        
+
     }
 
     public function test () {
@@ -18,15 +18,15 @@ class User {
       return $rows;
     }
 
-    // NEW METHOD!!!!: Get user ID by username
+    // FIXED: Get user ID by username - using correct column name
     public function getUserId($username) {
         try {
             $db = db_connect();
-            $statement = $db->prepare("SELECT id FROM users WHERE username = :username");
+            $statement = $db->prepare("SELECT user_id FROM users WHERE username = :username");
             $statement->bindValue(':username', strtolower($username));
             $statement->execute();
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-            return $result ? $result['id'] : false;
+            return $result ? $result['user_id'] : false;
         } catch (PDOException $e) {
             error_log("Failed to get user ID: " . $e->getMessage());
             return false;
@@ -127,7 +127,7 @@ class User {
       }
   } 
 
-  // authenticate user - UPDATED to store user_id in session
+  // FIXED: authenticate user - using correct column name
         public function authenticate($username, $password) {
             $username = strtolower($username);
 
@@ -141,7 +141,7 @@ class User {
           die;
         }
 
-            // normal auth logic - UPDATED to get user id and full user data
+            // FIXED: normal auth logic - using correct column name
                 $db = db_connect();
                 $statement = $db->prepare("select * from users WHERE username = :name;");
                 $statement->bindValue(':name', $username);
@@ -155,7 +155,7 @@ class User {
 
                     $_SESSION['auth'] = 1;
                     $_SESSION['username'] = ucwords($username);
-                    $_SESSION['user_id'] = $rows['id']; // STORE USER ID IN SESSION
+                    $_SESSION['user_id'] = $rows['user_id']; // FIXED: Use 'user_id' instead of 'id'
                     unset($_SESSION['failedAuth']);
                     header('Location: /home');
                     die;
@@ -178,15 +178,15 @@ class User {
           $_SESSION['login_error'] = "Invalid username or password. " . $attemptsRemaining . " attempts remaining.";
         }
       }
-      
-			if(isset($_SESSION['failedAuth'])) {
-				$_SESSION['failedAuth'] ++; //increment
-			} else {
-				$_SESSION['failedAuth'] = 1;
-			}
-			header('Location: /login');
-			die;
-		}
+
+            if(isset($_SESSION['failedAuth'])) {
+                $_SESSION['failedAuth'] ++; //increment
+            } else {
+                $_SESSION['failedAuth'] = 1;
+            }
+            header('Location: /login');
+            die;
+        }
     }
 
   // user signup logic
