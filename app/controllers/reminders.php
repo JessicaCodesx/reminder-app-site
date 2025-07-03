@@ -53,7 +53,41 @@ class Reminders extends Controller {
         die;
     }
 
+    // form for creating new reminder
+    public function create() {
+        $this->checkAuth();
+        $this->view('reminders/create');
+    }
 
+    // handle creating new reminder
+    public function store() {
+        $this->checkAuth();
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $title = trim($_POST['title'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+        $due_date = $_POST['due_date'] ?? null;
+
+        // bsic val
+        if (empty($due_date)) {
+          $due_date = null;
+        }
+
+        $reminder = $this->model('Reminder');
+        if ($reminder->createReminder($_SESSION['username'], $title, $description, $due_date)) {
+            $_SESSION['reminder_success'] = 'Reminder created successfully!';
+            header('Location: /reminders');
+            die;
+        } else {
+            $_SESSION['reminder_error'] = 'Failed to create reminder';
+            header('Location: /reminders/create');  
+            die;
+        }
+      }
+
+      header('Location: /reminders/create');
+      die;
+    }
 
   
 }
