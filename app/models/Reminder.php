@@ -2,7 +2,7 @@
 
 class Reminder {
 
-    // get all reminders for user
+    // get all reminders for user (read)
     public function getUserReminders($username) {
         try {
             $db = db_connect();
@@ -16,4 +16,68 @@ class Reminder {
         }
     }
 
+    // add a new reminder (create)
+    public function createReminder($username, $title, $description, $due_date = null) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("INSERT INTO reminders (username, title, description, due_date, created_at) VALUES (:username, :title, :description, :due_date, NOW())");
+            $statement->bindValue(':username', strtolower($username));
+            $statement->bindValue(':title', $title);
+            $statement->bindValue(':description', $description);
+            $statement->bindValue(':due_date', $due_date);
+
+            return $statement->execute();
+        } catch (PDOException $e) {
+            error_log("Failed to create reminder: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // get a specific reminder by id
+    public function getReminder($id, $username) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("SELECT * FROM reminders WHERE id = :id AND username = :username");
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':username', strtolower($username));
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Failed to get reminder: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // delete a reminder (delete)
+    public function deleteReminder($id, $username) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("DELETE FROM reminders WHERE id = :id AND username = :username");
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':username', strtolower($username));
+
+            return $statement->execute();
+        } catch (PDOException $e) {
+            error_log("Failed to delete reminder: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // update a reminder (update)
+    public function updateReminder($id, $username, $title, $description, $due_date = null) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("UPDATE reminders SET title = :title, description = :description, due_date = :due_date WHERE id = :id AND username = :username");
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':username', strtolower($username));
+            $statement->bindValue(':title', $title);
+            $statement->bindValue(':description', $description);
+            $statement->bindValue(':due_date', $due_date);
+
+            return $statement->execute();
+        } catch (PDOException $e) {
+            error_log("Failed to update reminder: " . $e->getMessage());
+            return false;
+        }
+    }
 }
