@@ -18,6 +18,21 @@ class User {
       return $rows;
     }
 
+    // NEW METHOD!!!!: Get user ID by username
+    public function getUserId($username) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("SELECT id FROM users WHERE username = :username");
+            $statement->bindValue(':username', strtolower($username));
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            return $result ? $result['id'] : false;
+        } catch (PDOException $e) {
+            error_log("Failed to get user ID: " . $e->getMessage());
+            return false;
+        }
+    }
+
   // log log in attempts > including ip address like a real swe B)
   public function logLoginAttempt($username, $result) {
       try {
@@ -112,38 +127,39 @@ class User {
       }
   } 
 
-  // authenticate user
-    public function authenticate($username, $password) {
-		$username = strtolower($username);
+  // authenticate user - UPDATED to store user_id in session
+        public function authenticate($username, $password) {
+            $username = strtolower($username);
 
-      // check if user is locked out before attempting to auth
-      $lockoutStatus = $this->isUserLockedOut($username);
-      if ($lockoutStatus['locked']) {
-      $timeRemaining = $this->getLockoutTimeRemaining($username);
-      $_SESSION['lockout_error'] = "Account locked for " . $timeRemaining . " seconds";
-      $_SESSION['lockout_time'] = $timeRemaining;
-      header('Location: /login');
-      die;
-    }
+          // check if user is locked out before attempting to auth
+          $lockoutStatus = $this->isUserLockedOut($username);
+          if ($lockoutStatus['locked']) {
+          $timeRemaining = $this->getLockoutTimeRemaining($username);
+          $_SESSION['lockout_error'] = "Account locked for " . $timeRemaining . " seconds";
+          $_SESSION['lockout_time'] = $timeRemaining;
+          header('Location: /login');
+          die;
+        }
 
-    // normal auth logic
-		$db = db_connect();
-        $statement = $db->prepare("select * from users WHERE username = :name;");
-        $statement->bindValue(':name', $username);
-        $statement->execute();
-        $rows = $statement->fetch(PDO::FETCH_ASSOC);
-		
-		if (password_verify($password, $rows['password'])) {
+            // normal auth logic - UPDATED to get user id and full user data
+                $db = db_connect();
+                $statement = $db->prepare("select * from users WHERE username = :name;");
+                $statement->bindValue(':name', $username);
+                $statement->execute();
+                $rows = $statement->fetch(PDO::FETCH_ASSOC);
 
-      // log successful login attempt
-      $this->logLoginAttempt($username, 'good');
+                if (password_verify($password, $rows['password'])) {
 
-			$_SESSION['auth'] = 1;
-			$_SESSION['username'] = ucwords($username);
-			unset($_SESSION['failedAuth']);
-			header('Location: /home');
-			die;
-		} else {
+              // log successful login attempt
+              $this->logLoginAttempt($username, 'good');
+
+                    $_SESSION['auth'] = 1;
+                    $_SESSION['username'] = ucwords($username);
+                    $_SESSION['user_id'] = $rows['id']; // STORE USER ID IN SESSION
+                    unset($_SESSION['failedAuth']);
+                    header('Location: /home');
+                    die;
+                } else {
 
       // log failed login attempt
       $this->logLoginAttempt($username, 'bad');
