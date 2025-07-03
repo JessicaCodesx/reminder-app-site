@@ -89,5 +89,55 @@ class Reminders extends Controller {
       die;
     }
 
-  
+
+    // form for editing reminder
+    public function edit($id) {
+        $this->checkAuth();
+        $reminder = $this->model('Reminder');
+        $reminderData = $reminder->getReminder($id, $_SESSION['username']);
+
+       if (!$reminderData) {
+         $_SESSION['reminder_error'] = 'Reminder not found';
+            header('Location: /reminders');
+            die;
+        }
+
+      $data = ['reminder' => $reminderData];
+      $this->view('reminders/edit', $data);
+    }
+
+    // handle updating reminder
+    public function update($id) {
+        $this->checkAuth();
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $title = trim($_POST['title'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+        $due_date = $_POST['due_date'] ?? null;
+
+        if (empty($title)) {
+            $_SESSION['reminder_error'] = 'Title is required';
+            header('Location: /reminders/edit/' . $id);
+            die;
+        }
+
+        if (empty($due_date)) {
+          $due_date = null;
+        }
+
+        $reminder = $this->model('Reminder');
+        if ($reminder->updateReminder($id, $_SESSION['username'], $title, $description, $due_date)) {
+            $_SESSION['reminder_success'] = 'Reminder updated successfully!';
+            header('Location: /reminders');
+            die;
+        } else {
+            $_SESSION['reminder_error'] = 'Failed to update reminder';
+            header('Location: /reminders/edit/' . $id);
+            die;
+        }
+      }
+
+      header('Location: /reminders');
+      die;
+    }
 }
