@@ -1,7 +1,25 @@
 <?php
 
 class Reminder {
+    /*
+    DATABASE TABLE CREATED WITH:
+    
+    CREATE TABLE IF NOT EXISTS reminders (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        description TEXT,
+        due_date DATE NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
+        -- index 
+        INDEX idx_username (username),
+        INDEX idx_username_completed (username, completed),
+        INDEX idx_due_date (due_date)
+    );
+    */
+    
     // get all reminders for user (read)
     public function getUserReminders($username) {
         try {
