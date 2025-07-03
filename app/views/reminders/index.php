@@ -4,59 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Reminders</title>
-    <link rel="stylesheet" href="/app/styles/home.css">
-    <style>
-        .reminder-card {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        .reminder-card.completed {
-            background: #d4edda;
-            border-color: #c3e6cb;
-        }
-        .reminder-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        .reminder-title.completed {
-            text-decoration: line-through;
-            color: #6c757d;
-        }
-        .reminder-meta {
-            font-size: 0.9em;
-            color: #6c757d;
-            margin-bottom: 10px;
-        }
-        .reminder-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-        .btn-primary { background: #007bff; color: white; }
-        .btn-success { background: #28a745; color: white; }
-        .btn-warning { background: #ffc107; color: black; }
-        .btn-danger { background: #dc3545; color: white; }
-        .btn-secondary { background: #6c757d; color: white; }
-        .alert {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .alert-danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-    </style>
+    <link rel="stylesheet" href="/app/styles/reminders.css">
 </head>
 
 <?php require_once 'app/views/templates/header.php' ?>
@@ -82,13 +30,13 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div style="margin-bottom: 20px;">
+            <div class="actions-row">
                 <a href="/reminders/create" class="btn btn-primary">+ Add New Reminder</a>
                 <a href="/home" class="btn btn-secondary">← Back to Home</a>
             </div>
 
             <?php if (empty($data['reminders'])): ?>
-                <div class="reminder-card">
+                <div class="reminder-card empty-state">
                     <p>No reminders yet. <a href="/reminders/create">Create your first reminder!</a></p>
                 </div>
             <?php else: ?>
@@ -115,7 +63,7 @@
                         </div>
 
                         <div class="reminder-actions">
-                            <form method="post" action="/reminders/toggle/<?= $reminder['id'] ?>" style="display: inline;">
+                            <form method="post" action="/reminders/toggle/<?= $reminder['id'] ?>">
                                 <button type="submit" class="btn <?= $reminder['completed'] ? 'btn-warning' : 'btn-success' ?>">
                                     <?= $reminder['completed'] ? 'Mark Incomplete' : 'Mark Complete' ?>
                                 </button>
@@ -123,7 +71,7 @@
 
                             <a href="/reminders/edit/<?= $reminder['id'] ?>" class="btn btn-primary">Edit</a>
 
-                            <form method="post" action="/reminders/delete/<?= $reminder['id'] ?>" style="display: inline;" 
+                            <form method="post" action="/reminders/delete/<?= $reminder['id'] ?>" 
                                   onsubmit="return confirm('Are you sure you want to delete this reminder?')">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>

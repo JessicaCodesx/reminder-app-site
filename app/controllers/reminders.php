@@ -35,11 +35,10 @@ class Reminders extends Controller {
         $this->view('reminders/create');
     }
 
-    // Replace your store() method in reminders.php with this debug version
     public function store() {
         $user_id = $this->checkAuth();
 
-        // Debug: Check if user_id is valid
+        // Debug: check if user_id is valid
         error_log("DEBUG: user_id = " . var_export($user_id, true));
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,37 +46,25 @@ class Reminders extends Controller {
             $description = trim($_POST['description'] ?? '');
             $due_date = $_POST['due_date'] ?? null;
 
-            // Debug: Log the input values
+            // debug: Log the input values
             error_log("DEBUG: title = " . var_export($title, true));
             error_log("DEBUG: description = " . var_export($description, true));
             error_log("DEBUG: due_date = " . var_export($due_date, true));
 
-            // Basic validation
+            // basic validation
             if (empty($title)) {
                 $_SESSION['reminder_error'] = 'Title is required';
                 header('Location: /reminders/create');
                 die;
             }
 
-            // Clean up due_date if empty
             if (empty($due_date)) {
                 $due_date = null;
             }
 
-            // Debug: Check if we can create the model
+            // debug: check if we can create the model
             $reminder = $this->model('Reminder');
             error_log("DEBUG: Reminder model created: " . var_export($reminder, true));
-
-            // Debug: Try the database connection
-            $db = db_connect();
-            if (!$db) {
-                error_log("DEBUG: Database connection failed!");
-                $_SESSION['reminder_error'] = 'Database connection failed';
-                header('Location: /reminders/create');
-                die;
-            } else {
-                error_log("DEBUG: Database connection successful");
-            }
 
             $result = $reminder->createReminder($user_id, $title, $description, $due_date);
             error_log("DEBUG: createReminder result = " . var_export($result, true));
