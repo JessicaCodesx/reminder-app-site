@@ -157,3 +157,45 @@
         </div>
     </div>
 </div>
+    
+<script>
+// adding a chart weeeoooooo
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('remindersChart').getContext('2d');
+    const chartData = <?= json_encode($data['most_reminders']) ?>;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: chartData.map(item => item.username),
+            datasets: [{
+                label: 'Number of Reminders',
+                data: chartData.map(item => item.reminder_count),
+                backgroundColor: [
+                    '#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1',
+                    '#fd7e14', '#20c997', '#6c757d', '#e83e8c', '#17a2b8'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+<?php require_once 'app/views/templates/footer.php' ?>
