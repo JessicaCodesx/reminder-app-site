@@ -2,26 +2,26 @@
 
 class App {
 
-    protected $controller = 'login';
+    protected $controller = 'index';  // Default to index (landing page)
     protected $method = 'index';
     protected $special_url = ['apply'];
     protected $params = [];
 
     public function __construct() {
-        if (isset($_SESSION['auth']) == 1) {
-            //$this->method = 'index';
+        // Only redirect to home if user is properly authenticated
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
             $this->controller = 'home';
-        } 
+        }
 
         // This will return a broken up URL
         // it will be /controller/method
         $url = $this->parseUrl();
 
         /* if controller exists in the URL, then go to it
-         * if not, then go to this->controller which is defaulted to home 
+         * if not, then go to this->controller which is defaulted to index 
          */
 
-        if (file_exists('app/controllers/' . $url[1] . '.php')) {
+        if (isset($url[1]) && file_exists('app/controllers/' . $url[1] . '.php')) {
             $this->controller = $url[1];
 
             $_SESSION['controller'] = $this->controller;
@@ -35,10 +35,16 @@ class App {
               $this->method = 'index';
             }
             unset($url[1]);
-        } else {
-            header('Location: /home');
+        } else if (isset($url[1]) && !empty($url[1])) {
+            // Only redirect if there was actually a URL path that doesn't exist
+            if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
+                header('Location: /home');
+            } else {
+                header('Location: /');
+            }
             die;
         }
+        // If no URL path or empty, just use the default controller (index)
 
         require_once 'app/controllers/' . $this->controller . '.php';
 
@@ -64,8 +70,8 @@ class App {
         $u = "{$_SERVER['REQUEST_URI']}";
         //trims the trailing forward slash (rtrim), sanitizes URL, explode it by forward slash to get elements
         $url = explode('/', filter_var(rtrim($u, '/'), FILTER_SANITIZE_URL));
-		unset($url[0]);
-		return $url;
+        unset($url[0]);
+        return $url;
     }
 
 }
