@@ -21,6 +21,9 @@ class Reports extends Controller {
     public function index() {
             $this->checkAdmin();
 
+            // use ACL to check admin access
+            ACL::requireAdmin();
+
             // all data for reports
             $user = $this->model('User');
             $reminder = $this->model('Reminder');
