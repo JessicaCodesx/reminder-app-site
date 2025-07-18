@@ -658,3 +658,186 @@ form textarea.form-control {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/* ====================
+   NAVBAR STYLING 
+   ==================== */
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid var(--primary-dark);
+    padding: var(--spacing-md) 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    color: white !important;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-light) !important;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: var(--spacing-xs) var(--spacing-md) !important;
+    border-radius: var(--radius-md);
+}
+
+.navbar-nav .nav-link:hover {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-nav .nav-link.active {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.dropdown-menu {
+    background: white;
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-md);
+}
+
+.dropdown-item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: var(--gray-100);
+    color: var(--gray-800);
+}
+
+.dropdown-item.admin-menu-item {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+}
+
+.dropdown-item.admin-menu-item:hover {
+    background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+}
+
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    color: white;
+}
+
+/* Offcanvas Styling */
+.offcanvas {
+    background: var(--gray-800);
+}
+
+.offcanvas-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+.offcanvas-title {
+    color: white;
+}
+
+.offcanvas-body {
+    padding: var(--spacing-lg);
+}
+
+.offcanvas .nav-link {
+    color: var(--gray-300) !important;
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xs);
+}
+
+.offcanvas .nav-link:hover {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 0.7rem;
+    padding: 0.25em 0.5em;
+    border-radius: var(--radius-sm);
+}
+
+.badge.bg-warning {
+    background: var(--warning-color) !important;
+    color: var(--gray-800) !important;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: var(--radius-lg);
+    border: none;
+    box-shadow: var(--shadow-xl);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+    border-bottom: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.modal-title {
+    color: var(--gray-800);
+}
+
+.modal-body {
+    padding: var(--spacing-xl);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--gray-200);
+    padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+/* Ensure main content has proper spacing */
+main {
+    min-height: calc(100vh - 200px);
+    padding-top: var(--spacing-lg);
+}
+
+/* Public navbar styling (for headerPublic.php) */
+.navbar-light .navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--gray-600) !important;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding-top: var(--spacing-md);
+    }
+
+    .navbar-nav .nav-link {
+        padding: var(--spacing-sm) var(--spacing-md) !important;
+    }
+}
