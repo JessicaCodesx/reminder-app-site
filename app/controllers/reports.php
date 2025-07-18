@@ -17,3 +17,38 @@ class Reports extends Controller {
 
         return true;
     }
+
+    public function index() {
+            $this->checkAdmin();
+
+            // all data for reports
+            $user = $this->model('User');
+            $reminder = $this->model('Reminder');
+
+            // all reminders with user info
+            $allReminders = $reminder->getAllRemindersWithUsers();
+
+            // user with most reminders
+            $mostReminders = $reminder->getUserWithMostReminders();
+
+            // login counts by username
+            $loginCounts = $user->getLoginCountsByUsername();
+
+            // stats
+            $stats = [
+                'total_reminders' => count($allReminders),
+                'total_users' => $user->getTotalUsers(),
+                'completed_reminders' => count(array_filter($allReminders, function($r) { return $r['completed']; })),
+                'pending_reminders' => count(array_filter($allReminders, function($r) { return !$r['completed']; }))
+            ];
+
+            $data = [
+                'all_reminders' => $allReminders,
+                'most_reminders' => $mostReminders,
+                'login_counts' => $loginCounts,
+                'stats' => $stats
+            ];
+
+            $this->view('reports/index', $data);
+        }
+    }
