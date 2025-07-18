@@ -117,4 +117,22 @@ class Reminder {
             return false;
         }
     }
+
+    // get all reminders with user information (for admin)
+    public function getAllRemindersWithUsers() {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("
+                SELECT r.*, u.username 
+                FROM reminders r 
+                JOIN users u ON r.user_id = u.user_id 
+                ORDER BY r.created_at DESC
+            ");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Failed to get all reminders: " . $e->getMessage());
+            return [];
+        }
+    }
 }
