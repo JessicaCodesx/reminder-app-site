@@ -257,4 +257,26 @@ class User {
         }
     }
 
+    // get login counts by username
+    public function getLoginCountsByUsername() {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("
+                SELECT username, 
+                       COUNT(*) as total_attempts,
+                       SUM(CASE WHEN attempt_result = 'good' THEN 1 ELSE 0 END) as successful_logins,
+                       SUM(CASE WHEN attempt_result = 'bad' THEN 1 ELSE 0 END) as failed_attempts,
+                       MAX(attempt_time) as last_login
+                FROM login_attempts 
+                GROUP BY username 
+                ORDER BY successful_logins DESC
+            ");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Failed to get login counts: " . $e->getMessage());
+            return [];
+        }
+    }
+
 }
