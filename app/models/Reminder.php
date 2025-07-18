@@ -155,4 +155,19 @@ class Reminder {
             return [];
         }
     }
+
+    // get pending reminders count for a user
+    public function getPendingRemindersCount($user_id) {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("SELECT COUNT(*) as count FROM reminders WHERE user_id = :user_id AND completed = 0");
+            $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            return $result['count'];
+        } catch (PDOException $e) {
+            error_log("Failed to get pending reminders count: " . $e->getMessage());
+            return 0;
+        }
+    }
 }
