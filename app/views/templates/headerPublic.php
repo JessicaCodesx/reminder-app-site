@@ -31,9 +31,9 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
     <meta name="mobile-web-app-capable" content="yes">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm" style="background: linear-gradient(135deg, #e0f2fe 0%, #2563eb 100%) !important;">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center text-primary" href="/">
+            <a class="navbar-brand d-flex align-items-center" href="/" style="color: #1e40af; font-weight: 700;">
                 <i class="bi bi-journal-check me-2"></i>
                 <span>ReminderApp</span>
             </a>
@@ -67,10 +67,10 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
                 </ul>
 
                 <div class="d-flex gap-2">
-                    <a class="btn btn-outline-primary" href="/login">
+                    <a class="btn btn-outline-primary" href="/login" style="border-color: #2563eb; color: #2563eb; background: #e0f2fe;">
                         <i class="bi bi-box-arrow-in-right me-1"></i>Login
                     </a>
-                    <a class="btn btn-primary" href="/create">
+                    <a class="btn btn-primary" href="/create" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important; color: #fff; border: none;">
                         <i class="bi bi-person-plus me-1"></i>Sign Up
                     </a>
                 </div>

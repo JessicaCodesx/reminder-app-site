@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Reminder App</title>
+    <link rel="stylesheet" href="/app/styles/create.css">
 </head>
 
-<body>
+<?php require_once 'app/views/templates/headerPublic.php'; ?>
 <main role="main" class="container">
     <div class="page-header" id="banner">
         <div class="row">
@@ -54,5 +55,4 @@
         </div>
     </div>
 </main>
-</body>    
 <?php require_once 'app/views/templates/footer.php'; ?>

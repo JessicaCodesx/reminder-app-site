@@ -53,9 +53,9 @@ if ($current_user_id) {
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background: linear-gradient(135deg, #e0f2fe 0%, #2563eb 100%) !important; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="/home" style="color: white; font-weight: 700;">
+                <a class="navbar-brand d-flex align-items-center" href="/home" style="color: #1e40af; font-weight: 700;">
                     <i class="bi bi-journal-check me-2"></i>
                     <span class="fw-bold">ReminderApp</span>
                 </a>

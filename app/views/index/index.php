@@ -1,6 +1,6 @@
 <?php require_once 'app/views/templates/headerPublic.php'?>
 
-<div class="bg-primary text-white" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;">
+<div class="text-dark" style="background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 100%) !important;">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -30,7 +30,7 @@
 
     <div class="row g-4 mb-5">
         <div class="col-md-4 text-center">
-            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+            <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important; color: #2563eb;">
                 <i class="bi bi-lightning-charge text-primary" style="font-size: 2rem;"></i>
             </div>
             <h4>Quick & Easy</h4>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-md-4 text-center">
-            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+            <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important; color: #22d3ee;">
                 <i class="bi bi-shield-check text-success" style="font-size: 2rem;"></i>
             </div>
             <h4>Secure</h4>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-md-4 text-center">
-            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+            <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; background: linear-gradient(135deg, #e0f2fe 0%, #fef9c3 100%) !important; color: #f59e0b;">
                 <i class="bi bi-phone text-warning" style="font-size: 2rem;"></i>
             </div>
             <h4>Mobile Ready</h4>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="bg-light rounded-3 p-5 text-center">
+    <div class="rounded-3 p-5 text-center" style="background: linear-gradient(135deg, #e0f2fe 0%, #fff 100%) !important;">
         <h3 class="mb-3">Ready to Get Organized?</h3>
         <p class="lead mb-4">Join students and professionals who trust ReminderApp to keep their lives on track.</p>
         <a href="/create" class="btn btn-primary btn-lg me-3">

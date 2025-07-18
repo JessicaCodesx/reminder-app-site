@@ -3,15 +3,15 @@
    ==================== */
 
 :root {
-    /* Unified Blue Color Palette */
-    --primary-color: #2563eb; /* blue-600 */
-    --primary-dark: #1e40af;  /* blue-800 */
-    --primary-light: #60a5fa; /* blue-400 */
+    /* Brighter Blue Color Palette */
+    --primary-color: #38bdf8; /* sky-400 */
+    --primary-dark: #2563eb;  /* blue-600 */
+    --primary-light: #e0f2fe; /* sky-100 */
     --secondary-color: #64748b;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --danger-color: #ef4444;
-    --info-color: #3b82f6;
+    --success-color: #22d3ee;
+    --warning-color: #fde68a;
+    --danger-color: #fca5a5;
+    --info-color: #38bdf8;
 
     /* Neutral Colors */
     --gray-50: #f8fafc;
@@ -68,7 +68,12 @@ body {
     font-size: var(--font-size-base);
     line-height: 1.6;
     color: var(--gray-700);
-    background-color: var(--gray-50);
+    background-color: var(--primary-light);
+}
+
+.container, .offcanvas, .modal-content, .reminder-card, .empty-state, .page-header {
+    background: var(--primary-light) !important;
+    color: #1e40af;
 }
 
 /* ====================
@@ -104,7 +109,7 @@ body {
 
 /* FIXED: Reduced spacing for page headers */
 .page-header {
-    background: linear-gradient(135deg, white 0%, var(--gray-50) 100%);
+    background: linear-gradient(135deg, white 0%, var(--primary-light) 100%) !important;
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg) var(--spacing-xl); /* Reduced from 2xl */
     margin: var(--spacing-md) 0 var(--spacing-lg) 0; /* Reduced top margin */
@@ -115,7 +120,7 @@ body {
 .page-header h1 {
     font-size: var(--font-size-3xl); /* Reduced from 4xl */
     font-weight: 700; /* Reduced from 800 */
-    color: var(--gray-800);
+    color: #1e40af;
     text-align: center;
     margin-bottom: var(--spacing-xs); /* Reduced from sm */
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
@@ -152,14 +157,14 @@ main {
 }
 
 .alert-success {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    color: #065f46;
+    background: linear-gradient(135deg, #ccfbf1 0%, #a7f3d0 100%) !important;
+    color: #0e7490 !important;
     border-left-color: var(--success-color);
 }
 
 .alert-danger {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-    color: #991b1b;
+    background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%) !important;
+    color: #b91c1c !important;
     border-left-color: var(--danger-color);
 }
 
@@ -603,7 +608,7 @@ form textarea.form-control {
 
 .badge.bg-warning {
     background: var(--warning-color) !important;
-    color: var(--primary-dark) !important;
+    color: #1e40af !important;
 }
 
 /* Modal Styling */

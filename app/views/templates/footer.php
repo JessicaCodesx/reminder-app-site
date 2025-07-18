@@ -1,6 +1,6 @@
 </main>
 
-    <footer class="bg-dark text-light mt-5 py-4" style="background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;">
+    <footer class="bg-dark text-light mt-5 py-4" style="background: linear-gradient(135deg, #e0f2fe 0%, #2563eb 100%) !important; color: #1e40af;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
