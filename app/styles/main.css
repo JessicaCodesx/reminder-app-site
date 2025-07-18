@@ -3,10 +3,10 @@
    ==================== */
 
 :root {
-    /* Modern Color Palette */
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --primary-light: #a5b4fc;
+    /* Unified Blue Color Palette */
+    --primary-color: #2563eb; /* blue-600 */
+    --primary-dark: #1e40af;  /* blue-800 */
+    --primary-light: #60a5fa; /* blue-400 */
     --secondary-color: #64748b;
     --success-color: #10b981;
     --warning-color: #f59e0b;
@@ -279,10 +279,8 @@ form textarea.form-control {
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, #3730a3 100%);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
+    color: #fff !important;
 }
 
 .btn-secondary {
@@ -605,7 +603,7 @@ form textarea.form-control {
 
 .badge.bg-warning {
     background: var(--warning-color) !important;
-    color: var(--gray-800) !important;
+    color: var(--primary-dark) !important;
 }
 
 /* Modal Styling */

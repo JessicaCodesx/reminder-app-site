@@ -1,6 +1,6 @@
 <?php require_once 'app/views/templates/headerPublic.php'?>
 
-<div class="bg-primary text-white">
+<div class="bg-primary text-white" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-6">

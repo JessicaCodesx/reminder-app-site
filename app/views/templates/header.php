@@ -53,7 +53,7 @@ if ($current_user_id) {
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="/home" style="color: white; font-weight: 700;">
                     <i class="bi bi-journal-check me-2"></i>
@@ -130,7 +130,7 @@ if ($current_user_id) {
 
                             <?php if (isset($_SESSION['username']) && strtolower($_SESSION['username']) === 'admin'): ?>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/reports" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e;">
+                            <li><a class="dropdown-item" href="/reports" style="background: linear-gradient(135deg, #e0e7ff 0%, #2563eb 100%); color: #1e40af;">
                                 <i class="bi bi-bar-chart me-2"></i>Admin Reports
                             </a></li>
                             <?php endif; ?>
@@ -147,7 +147,7 @@ if ($current_user_id) {
 
         <!-- Mobile Offcanvas -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasLabel" style="background: #1e293b;">
-            <div class="offcanvas-header" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white;">
+            <div class="offcanvas-header" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white;">
                 <h5 class="offcanvas-title fw-bold" id="navbarOffcanvasLabel" style="color: white;">
                     <i class="bi bi-journal-check me-2"></i>ReminderApp
                 </h5>
@@ -177,7 +177,7 @@ if ($current_user_id) {
                     <?php if (isset($_SESSION['username']) && strtolower($_SESSION['username']) === 'admin'): ?>
                     <li><hr class="my-2" style="border-color: #475569;"></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/reports" style="color: #cbd5e1; padding: 0.5rem 1rem; border-radius: 0.5rem; margin-bottom: 0.25rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e;">
+                        <a class="nav-link" href="/reports" style="color: #cbd5e1; padding: 0.5rem 1rem; border-radius: 0.5rem; margin-bottom: 0.25rem; background: linear-gradient(135deg, #e0e7ff 0%, #2563eb 100%); color: #1e40af;">
                             <i class="bi bi-bar-chart me-2"></i>Admin Reports
                             <span class="badge bg-warning text-dark ms-1">Admin</span>
                         </a>
@@ -223,8 +223,8 @@ if ($current_user_id) {
                         </div>
                     </div>
                     <div class="modal-footer" style="border-top: 1px solid #e2e8f0; padding: 1rem 2rem;">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: linear-gradient(135deg, #64748b 0%, #475569 100%); border: none; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600;">Cancel</button>
-                        <button type="submit" class="btn btn-primary" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: linear-gradient(135deg, #64748b 0%, #1e40af 100%); border: none; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600;">Cancel</button>
+                        <button type="submit" class="btn btn-primary" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); border: none; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 600;">
                             <i class="bi bi-check-lg me-1"></i>Add Reminder
                         </button>
                     </div>
@@ -232,5 +232,12 @@ if ($current_user_id) {
             </div>
         </div>
     </div>
+
+    <!-- Main content with reduced spacing -->
+    <!-- <main style="min-height: calc(100vh - 200px); padding-top: 0.5rem;"> -->
+    <!-- Main content will be inserted here -->
+    <!-- </main> -->
+
+    <!-- Bootstrap JS - Make sure it loads properly -->
 </body>
 </html>

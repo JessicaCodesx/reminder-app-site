@@ -1,6 +1,6 @@
 </main>
 
-    <footer class="bg-dark text-light mt-5 py-4">
+    <footer class="bg-dark text-light mt-5 py-4" style="background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
@@ -38,7 +38,7 @@
                     </ul>
                 </div>
 
-        
+
                 <div class="col-md-2 mb-3">
                     <h6 class="fw-semibold">Academic</h6>
                     <ul class="nav flex-column">
