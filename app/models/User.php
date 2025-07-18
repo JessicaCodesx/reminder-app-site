@@ -242,4 +242,19 @@ class User {
         return false;
     }
   }
+
+    // get total number of users
+    public function getTotalUsers() {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("SELECT COUNT(*) as total FROM users");
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            return $result['total'];
+        } catch (PDOException $e) {
+            error_log("Failed to get total users: " . $e->getMessage());
+            return 0;
+        }
+    }
+
 }
