@@ -20,18 +20,18 @@
                 </div>
 
                 <div class="col-md-6">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body text-center p-4">
-                                <i class="bi bi-github text-dark" style="font-size: 3rem;"></i>
-                                <h5 class="card-title mt-3">Source Code</h5>
-                                <p class="card-text text-muted">View the project repository and documentation on GitHub.</p>
-                                <a href="https://github.com/JessicaCodesx/cosc-4806-3/tree/main" target="_blank" class="btn btn-outline-dark mt-3">
-                                    <i class="bi bi-github me-2"></i>View on GitHub
-                                </a>
-                            </div>
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-github text-dark" style="font-size: 3rem;"></i>
+                            <h5 class="card-title mt-3">Source Code</h5>
+                            <p class="card-text text-muted">View the project repository and documentation on GitHub.</p>
+                            <a href="https://github.com/JessicaCodesx/cosc-4806-3/tree/main" target="_blank" class="btn btn-outline-dark mt-3">
+                                <i class="bi bi-github me-2"></i>View on GitHub
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
             <div class="card border-0 shadow-sm mt-4">
                 <div class="card-body p-5">
@@ -58,6 +58,16 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mt-4 text-center">
+                <div class="card-body p-4">
+                    <h3 class="mb-3">🚀 Check out my GitHub!</h3>
+                    <p class="text-muted">Explore more of my projects and contributions on GitHub.</p>
+                    <a href="https://github.com/JessicaCodesx" target="_blank" class="btn btn-dark">
+                        <i class="bi bi-github me-2"></i>Visit My GitHub Profile
+                    </a>
                 </div>
             </div>
 
