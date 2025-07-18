@@ -1,6 +1,13 @@
 <?php
-if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+// Ensure session is started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Redirect authenticated users to home
+if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
     header('Location: /home');
+    exit;
 }
 ?>
 <!DOCTYPE html>

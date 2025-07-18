@@ -6,9 +6,9 @@
     <title>Home</title>
     <link rel="stylesheet" href="/app/styles/home.css">
 </head>
-    
+
 <?php require_once 'app/views/templates/header.php' ?>
-<div class="container">
+<main class="container">
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-12">
@@ -24,5 +24,5 @@
             <p><a href="/reminders" class="btn btn-primary">📝 My Reminders</a></p>
         </div>
     </div>
-
-    <?php require_once 'app/views/templates/footer.php' ?>
+</main>
+<?php require_once 'app/views/templates/footer.php' ?>
