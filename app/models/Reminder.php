@@ -135,4 +135,24 @@ class Reminder {
             return [];
         }
     }
+
+    // get user with most reminders
+    public function getUserWithMostReminders() {
+        try {
+            $db = db_connect();
+            $statement = $db->prepare("
+                SELECT u.username, COUNT(r.id) as reminder_count
+                FROM users u
+                LEFT JOIN reminders r ON u.user_id = r.user_id
+                GROUP BY u.user_id, u.username
+                ORDER BY reminder_count DESC
+                LIMIT 10
+            ");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Failed to get user with most reminders: " . $e->getMessage());
+            return [];
+        }
+    }
 }
