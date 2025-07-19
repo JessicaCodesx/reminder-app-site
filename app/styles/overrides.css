@@ -1,0 +1,351 @@
+
+
+/* ====================
+   FORM PAGES (Login, Create Account, etc.)
+   ==================== */
+
+/* Center form layouts */
+.row:has(.col-sm-auto) {
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+/* Form containers */
+.col-sm-auto {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Form styling that works with our design system */
+form:not(.reminder-actions form):not(.inline-form) {
+    width: 100%;
+    max-width: 400px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ====================
+   HOME PAGE SPECIFIC
+   ==================== */
+
+.home-page .page-header {
+    text-align: center;
+    background: var(--gradient-accent);
+}
+
+.home-page .btn {
+    min-width: 200px;
+    margin: 0 auto;
+}
+
+/* ====================
+   REMINDER PAGES SPECIFIC
+   ==================== */
+
+/* Reminder creation forms */
+.reminder-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.reminder-form .form-control {
+    border: 2px solid var(--gray-300);
+}
+
+.reminder-form .form-control:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Reminder list styling */
+.reminder-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ====================
+   LANDING PAGE SPECIFIC
+   ==================== */
+
+/* Hero section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-500) 100%) !important;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.hero-section h1 {
+    color: var(--text-primary) !important;
+    font-weight: 800;
+}
+
+.hero-section p {
+    color: var(--text-primary) !important;
+}
+
+.hero-section .btn-primary {
+    background: var(--gradient-primary);
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+.hero-section .btn-outline-primary {
+    border-color: var(--primary-600);
+    color: var(--primary-700);
+    background: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.hero-section .btn-outline-primary:hover {
+    background: var(--primary-600);
+    border-color: var(--primary-600);
+    color: white;
+}
+
+/* Feature cards */
+.feature-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* ====================
+   ADMIN REPORTS SPECIFIC
+   ==================== */
+
+/* Stats grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-card.success h3 { color: var(--success-color); }
+.stat-card.primary h3 { color: var(--primary-500); }
+.stat-card.warning h3 { color: var(--warning-color); }
+.stat-card.danger h3 { color: var(--danger-color); }
+
+/* Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.data-table th {
+    background: var(--bg-accent);
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.data-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--text-secondary);
+}
+
+.data-table tr:hover {
+    background: var(--bg-accent);
+}
+
+/* ====================
+   UTILITY OVERRIDES
+   ==================== */
+
+/* Center content */
+.text-center {
+    text-align: center;
+}
+
+.text-center p {
+    text-align: center;
+}
+
+/* Consistent spacing */
+.section-spacing {
+    margin: var(--spacing-xl) 0;
+}
+
+/* Button groups */
+.button-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-group .btn {
+    min-width: 120px;
+}
+
+/* ====================
+   RESPONSIVE FIXES
+   ==================== */
+
+@media (max-width: 768px) {
+    /* Form adjustments */
+    form:not(.reminder-actions form):not(.inline-form) {
+        padding: var(--spacing-lg);
+        margin: 0 var(--spacing-sm);
+    }
+
+    /* Hero section mobile */
+    .hero-section {
+        min-height: 50vh;
+        padding: var(--spacing-xl) 0;
+    }
+
+    .hero-section h1 {
+        font-size: var(--font-size-2xl) !important;
+    }
+
+    /* Button groups mobile */
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-group .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Stats grid mobile */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    /* Tables mobile */
+    .data-table {
+        font-size: var(--font-size-sm);
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    .page-header {
+        padding: var(--spacing-md);
+        margin: var(--spacing-sm) 0;
+    }
+
+    .page-header h1 {
+        font-size: var(--font-size-xl);
+    }
+
+    form:not(.reminder-actions form):not(.inline-form) {
+        padding: var(--spacing-md);
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* ====================
+   ACCESSIBILITY IMPROVEMENTS
+   ==================== */
+
+/* Focus states */
+.btn:focus-visible,
+.form-control:focus-visible,
+.dropdown-item:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --gray-200: #000;
+        --gray-300: #333;
+        --primary-500: #0066cc;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ====================
+   PRINT STYLES
+   ==================== */
+
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    .modal,
+    .offcanvas {
+        display: none !important;
+    }
+
+    .container {
+        max-width: none !important;
+        padding: 0 !important;
+    }
+
+    .page-header {
+        border-bottom: 2px solid #000;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .reminder-card {
+        border: 1px solid #000;
+        margin-bottom: var(--spacing-md);
+        break-inside: avoid;
+    }
+}
