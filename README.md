@@ -28,8 +28,8 @@ Welcome to **Reminder App**, a fun and clean full-stack web application built as
 
 ## 📸 Preview
 
-> Screenshots coming soon!  
-> The design features a sleek dashboard and account settings page with stylish animations.
+<img width="1897" height="927" alt="Screenshot (363)" src="https://github.com/user-attachments/assets/c5f6687b-8ff6-48d4-8b71-7ab4b36f6480" />
+<img width="1899" height="927" alt="Screenshot (364)" src="https://github.com/user-attachments/assets/f85c2a4b-31e8-4dd9-aa99-eab0a9269a8b" />
 
 ---
 
